@@ -1,0 +1,168 @@
+
+CREATE TABLE article_attributes 
+(`id` BIGINT UNSIGNED NOT NULL , 
+`article_id` BIGINT UNSIGNED NOT NULL , 
+`name` VARCHAR(255) NOT NULL , 
+`value` VARCHAR(255) NOT NULL ) ENGINE = InnoDB;
+ALTER TABLE `article_attributes` ADD CONSTRAINT `fk_article_X_article_attributes` FOREIGN KEY (`article_id`) REFERENCES `articles`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; 
+ALTER TABLE `article_attributes` ADD `site_id` BIGINT UNSIGNED NOT NULL AFTER `article_id`; 
+ALTER TABLE `article_attributes` ADD CONSTRAINT `fk_site_X_article_attributes` FOREIGN KEY (`site_id`) REFERENCES `sites`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; 
+ALTER TABLE `article_attributes` CHANGE `id` `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`id`);
+
+CREATE TABLE `templates` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` int(11) NOT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `templates_sites` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `template_id` bigint(20) UNSIGNED NOT NULL,
+  `site_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `templates`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `templates_sites`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_templates_X_templates_sites` (`template_id`),
+  ADD KEY `fk_sites_X_templates_sites` (`site_id`);
+
+ALTER TABLE `templates`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `templates_sites`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `templates_sites`
+  ADD CONSTRAINT `fk_sites_X_templates_sites` FOREIGN KEY (`site_id`) REFERENCES `sites` (`id`),
+  ADD CONSTRAINT `fk_templates_X_templates_sites` FOREIGN KEY (`template_id`) REFERENCES `templates` (`id`);
+ALTER TABLE `templates_sites` ADD `active` TINYINT(1) NOT NULL DEFAULT '0' AFTER `site_id`; 
+
+
+ALTER TABLE `cities` ADD `biggest` INT NULL AFTER `zip`; 
+ALTER TABLE `cities` CHANGE `id` `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT; 
+
+ALTER TABLE `sites` ADD `slider_category` VARCHAR(250) NULL AFTER `slider_background`;
+
+CREATE TABLE `seo_pages` (`id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT , `category_id` BIGINT(20) UNSIGNED NOT NULL , `site_id` BIGINT(20) UNSIGNED NOT NULL , `city_id` INT(11) UNSIGNED  NOT NULL , `city_name` VARCHAR(255) NOT NULL , `meta_title` VARCHAR(255) NOT NULL , `meta_description` VARCHAR(255) NOT NULL , `title` VARCHAR(255) NOT NULL , `description` TEXT NOT NULL , `text_infront_h3` VARCHAR(255) NOT NULL , `text_city_nearby_h3` VARCHAR(255) NOT NULL , `active` TINYINT(1) NOT NULL , `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+ALTER TABLE `seo_pages` ADD CONSTRAINT `fk_categories_x_seo_pages` FOREIGN KEY (`category_id`) REFERENCES `categories`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; 
+ALTER TABLE `seo_pages` ADD CONSTRAINT `fk_sites_X_seo_pages` FOREIGN KEY (`site_id`) REFERENCES `sites`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; 
+-- Change cities to InnoDB
+ALTER TABLE `seo_pages` ADD CONSTRAINT `fk_cities_X_seo_pages` FOREIGN KEY (`city_id`) REFERENCES `cities`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; 
+
+ALTER TABLE `seo_pages` DROP `city_name`;
+ALTER TABLE `seo_pages` CHANGE `meta_description` `meta_description` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL; 
+ALTER TABLE `seo_pages` CHANGE `description` `description_top` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL; 
+ALTER TABLE `seo_pages` ADD `description_buttom` TEXT NULL AFTER `description_top`;
+
+CREATE TABLE `templates_extra_settings` (`id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT, `template_id` BIGINT(20) UNSIGNED NOT NULL, `content_top_register` TEXT NOT NULL, `image_top_register` VARCHAR(255) NOT NULL, `content_buttom_register` TEXT NULL, `image_buttom_register` VARCHAR(255) NULL, `footer_title_first_part` VARCHAR(255) NULL, `footer_content_first_part` TEXT NULL, `footer_title_second_part` VARCHAR(255) NULL, `footer_content_second_part` TEXT NULL, `footer_title_third_part` VARCHAR(255) NULL, `footer_content_third_part` TEXT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB; 
+ALTER TABLE `templates_extra_settings` ADD CONSTRAINT `fk_template_X_template_extra_setting` FOREIGN KEY (`template_id`) REFERENCES `templates`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `templates_extra_settings` ADD `create_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `footer_content_third_part`, ADD `update_at` DATETIME on update CURRENT_TIMESTAMP NULL AFTER `create_at`; 
+ALTER TABLE `templates_extra_settings` CHANGE `create_at` `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, CHANGE `update_at` `updated_at` DATETIME on update CURRENT_TIMESTAMP NULL DEFAULT NULL; 
+ALTER TABLE `templates_extra_settings` CHANGE `image_top_register` `image_top_register` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL;
+ALTER TABLE `templates_extra_settings` CHANGE `image_buttom_register` `image_categories_regions` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL; 
+ALTER TABLE `templates_extra_settings` DROP `footer_title_first_part`,DROP `footer_title_second_part`,DROP `footer_title_third_part`; 
+
+CREATE TABLE `jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attempts` tinyint(3) UNSIGNED NOT NULL,
+  `reserved_at` int(10) UNSIGNED DEFAULT NULL,
+  `available_at` int(10) UNSIGNED NOT NULL,
+  `created_at` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `jobs_queue_index` (`queue`);
+ALTER TABLE `jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+ALTER TABLE `seo_pages`
+  DROP `text_infront_h3`,
+  DROP `text_city_nearby_h3`; 
+  
+ALTER TABLE `seo_pages` ADD `text_infront_left` VARCHAR(255) NOT NULL AFTER `description_buttom`, ADD `text_infront_right` VARCHAR(255) NOT NULL AFTER `text_infront_left`;
+ALTER TABLE `article_attributes` ADD INDEX(`name`);
+ALTER TABLE `article_attributes` ADD INDEX(`value`);
+CREATE INDEX idx_city_id ON article_attributes (name, value);
+
+ALTER TABLE `templates_extra_settings` ADD `banner_large_image` VARCHAR(255) NOT NULL AFTER `image_categories_regions`, ADD `banner_large_redirect` VARCHAR(255) NOT NULL AFTER `banner_large_image`, ADD `banner_compact_image` VARCHAR(255) NULL AFTER `banner_large_redirect`, ADD `banner_compact_redirect` VARCHAR(255) NULL AFTER `banner_compact_image`;
+ALTER TABLE `templates` ADD `slug` VARCHAR(255) NOT NULL AFTER `name`, ADD `active` TINYINT(1) NOT NULL DEFAULT '0' AFTER `slug`; 
+ALTER TABLE `templates` CHANGE `name` `name` VARCHAR(255) NOT NULL; 
+
+CREATE TABLE `banners` (`id` BIGINT(20) UNSIGNED NOT NULL , `url_file` VARCHAR(255) NOT NULL , `url_redirect` VARCHAR(255) NOT NULL , `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NULL DEFAULT NULL ) ENGINE = InnoDB; 
+ALTER TABLE `banners` CHANGE `id` `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`id`); 
+CREATE TABLE `banner_by_site_and_category` (`id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT , `banner` BIGINT(20) UNSIGNED NOT NULL , `site` BIGINT(20) UNSIGNED NOT NULL , `category` BIGINT(20) UNSIGNED NOT NULL , `order_banner` INT NOT NULL , `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NULL DEFAULT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB; 
+ALTER TABLE `banner_by_site_and_category` ADD CONSTRAINT `fk_b_s_c_X_banner` FOREIGN KEY (`banner`) REFERENCES `banners`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; ALTER TABLE `banner_by_site_and_category` ADD CONSTRAINT `fk_b_s_c_X_site` FOREIGN KEY (`site`) REFERENCES `sites`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; ALTER TABLE `banner_by_site_and_category` ADD CONSTRAINT `fk_b_s_c_X_category` FOREIGN KEY (`category`) REFERENCES `categories`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; 
+ALTER TABLE `banners` ADD `type` TINYINT(1) NOT NULL AFTER `url_redirect`; 
+
+ ALTER TABLE `templates_extra_settings`
+  DROP `banner_large_image`,
+  DROP `banner_large_redirect`,
+  DROP `banner_compact_image`,
+  DROP `banner_compact_redirect`,
+  DROP `created_at`,
+  DROP `updated_at`; 
+  ALTER TABLE `templates_extra_settings` CHANGE `create_at` `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, CHANGE `update_at` `updated_at` DATETIME on update CURRENT_TIMESTAMP NULL DEFAULT NULL; 
+  ALTER TABLE pfzwaan_getranked.banner_by_site_and_category DROP FOREIGN KEY fk_b_s_c_X_category;
+  ALTER TABLE `banner_by_site_and_category` DROP `category`;
+  ALTER TABLE `banner_by_site_and_category` ADD `page` INT NOT NULL AFTER `site`; 
+  RENAME TABLE `pfzwaan_getranked`.`banner_by_site_and_category` TO `pfzwaan_getranked`.`banner_by_site`;
+
+
+  ------- 21 mar
+  CREATE TABLE reviews (
+    `id` BIGINT NOT NULL AUTO_INCREMENT ,
+     `site_id` BIGINT UNSIGNED NOT NULL ,
+      `article_id` BIGINT UNSIGNED NOT NULL , 
+      `starts` TINYINT(1) NOT NULL , 
+      `comment` TEXT NOT NULL , 
+      `wirtted_by` VARCHAR(255) NOT NULL , 
+      `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , 
+      PRIMARY KEY (`id`)) ENGINE = InnoDB;
+      ALTER TABLE `reviews` CHANGE `wirtted_by` `writted_by` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL; 
+      ALTER TABLE `reviews` CHANGE `starts` `stars` TINYINT(1) NOT NULL; 
+      ALTER TABLE `reviews` CHANGE `stars` `stars` TINYINT(1) UNSIGNED NOT NULL; 
+
+  ALTER TABLE `reviews` ADD CONSTRAINT `fk_site_X_reviews` FOREIGN KEY (`site_id`) REFERENCES `sites`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; ALTER TABLE `reviews` ADD CONSTRAINT `fk_article_X_reviews` FOREIGN KEY (`article_id`) REFERENCES `articles`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; 
+  ALTER TABLE `provinces` CHANGE `country_id` `country_id` BIGINT NOT NULL; 
+  ALTER TABLE `provinces` CHANGE `country_id` `country_id` BIGINT(20) UNSIGNED NOT NULL; 
+  -- change to InnoDB
+  ALTER TABLE `provinces` ADD CONSTRAINT `fk_country_X_provinces` FOREIGN KEY (`country_id`) REFERENCES `countries`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; 
+  ALTER TABLE `pages` CHANGE `content` `content_top` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL; 
+  ALTER TABLE `pages` ADD `content_buttom` TEXT NULL AFTER `content_top`;
+
+  --- 29 marzo
+  ALTER TABLE `sites` ADD `favicon` VARCHAR(255) NULL AFTER `logo`; 
+
+  -- 31 marzo
+  CREATE TABLE `hotpages`.`site_extra_settings` (`id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT , `site_id` BIGINT UNSIGNED NOT NULL , `google_analytics_code` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+  ALTER TABLE `site_extra_settings` ADD CONSTRAINT `fk_site_X_extra_settings` FOREIGN KEY (`site_id`) REFERENCES `sites`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+  ALTER TABLE `site_extra_settings` ADD `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `google_analytics_code`, ADD `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NULL DEFAULT NULL AFTER `created_at`; 
+  ALTER TABLE `site_extra_settings` CHANGE `google_analytics_code` `google_analytics_code` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL; 
+  
+
+  ALTER TABLE pages ADD COLUMN follow_title tinyint(1)DEFAULT 0 AFTER meta_title;
+  ALTER TABLE pages ADD COLUMN follow_description tinyint(1)DEFAULT 0 AFTER meta_description;
+  ALTER TABLE pages ADD COLUMN follow_keyword tinyint(1)DEFAULT 0 AFTER meta_keyword;
+
+  ALTER TABLE `pages`
+  DROP `follow_title`,
+  DROP `follow_description`;
+
+  ALTER TABLE `pages` CHANGE `follow_keyword` `noindex_follow` TINYINT(1) NULL DEFAULT '0';
+  
+
+  ////////// 19 abril
+  ALTER TABLE `sites` ADD `noindex_follow_blog` TINYINT(1) NOT NULL DEFAULT '0' AFTER `blog_footer`; 
+ALTER TABLE `sites` ADD `noindex_follow_daughter_blog` TINYINT(1) NOT NULL DEFAULT '0' AFTER `daughter_blog_footer`; 
+
+ALTER TABLE `sites` DROP `noindex_follow_daughter_blog`;
+ALTER TABLE `sites` CHANGE `noindex_follow_blog` `noindex_follow` TINYINT(1) NOT NULL DEFAULT '0'; 
+ALTER TABLE `sites` CHANGE `noindex_follow` `no_index_follow` TINYINT(1) NOT NULL DEFAULT '0'; 

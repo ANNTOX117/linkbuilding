@@ -1,0 +1,151 @@
+$primary_color: #B53471
+$secondary_color: #2c3e50
+
+$success_color: #A3CB38
+
+body
+  font-size: 14px
+h4
+  font-size: 18px
+.default-layout-navbar
+  background: $secondary_color
+  .navbar-brand-wrapper
+    background: transparent
+  .navbar-menu-wrapper
+    .navbar-nav
+      .nav-item
+        .nav-link
+          color: #FFFFFF
+          i
+            margin-right: 10px
+          &#profileDropdown
+            width: 40px
+            text-align: center
+            display: flex
+            flex-wrap: wrap
+            align-items: center
+            justify-content: center
+            &:hover
+              background: $primary_color
+              border-color: $primary_color
+              i
+                color: #FFFFFF !important
+            i
+              margin: 0
+          &.border-gray
+            border-color: #FFFFFF
+            transition: .3s ease-out
+            &:hover
+              background: $primary_color
+              border-color: $primary_color
+.header__burger
+  span
+    background: #FFFFFF
+.bg-success
+  background: $primary_color !important
+  color: #FFFFFF
+.page-link
+  color: $secondary_color
+.table
+  font-size: 14px
+  td
+    vertical-align: middle
+    white-space: nowrap
+    a
+      &:not(.btn)
+        color: $primary_color
+  p
+    margin: 0 0 5px
+    &:last-child
+      margin: 0
+  .text-muted
+    &+.text-danger
+      margin-left: 10px
+  .offer
+    i
+      margin-right: 5px
+  .btn
+    font-size: 13px
+    width: 100%
+.btn-primary
+  background: $primary_color
+  border-color: $primary_color
+  font-weight: 600
+  &:hover, &:focus
+    background: #FFFFFF
+    color: $primary_color
+    border-color: $primary_color
+.nav-tabs
+  .nav-item
+    .nav-link
+      background: $primary_color
+      padding: 8px 15px
+      font-size: 14px
+      margin: 0
+#myTab
+  @media(max-width: 768px)
+    display: flex
+    flex-wrap: wrap
+    margin: 0 -7px
+    width: auto
+  @media(max-width: 575px)
+    margin-top: 20px
+  .nav-item
+    @media(max-width: 768px)
+      flex: 0 0 50%
+      max-width: 50%
+      padding: 0 7px !important
+      margin: 0 0 10px !important
+    .nav-link
+      padding: 8px 15px
+      @media(max-width: 575px)
+        margin: 0 !important
+.sidebar-icon-only
+  .sidebar
+    .nav
+      .nav-item
+        i
+          margin-right: 0
+          width: 22px
+          text-align: center
+.btn-link
+  color: $primary_color
+.btn
+  &.bg-light
+    color: $primary_color
+.dropdown-item.active,
+.dropdown-item:active
+  background: $primary_color
+.sidebar
+  &#sidebar
+    .nav-profile
+      background: transparent
+    .nav-profile-text
+      color: $secondary_color
+      span
+        color: $secondary_color !important
+        font-size: 14px !important
+        &.text-small
+          font-size: 12px !important
+  .nav
+    .nav-item
+      i
+        font-size: 18px
+        margin-right: 15px
+        color: #717579 !important
+      &.active, &:hover
+        a
+          color: $secondary_color !important
+          i
+            color: $primary_color !important
+          span
+            color: $secondary_color !important
+
+.edit-remove-item
+  .btn
+    width: fit-content
+    &.btn-primary
+      background-color: $success_color
+      border-color: $success_color
+      &:hover
+        color: $success_color

@@ -1,0 +1,128 @@
+.section--regions{
+    padding:50px 0;
+    position:relative;
+    background:#fff;
+}
+.section--regions .title--section{
+    margin-bottom:25px;
+}
+.section--regions .title--section i{
+    color:#ff3066;
+}
+.section--regions .paragraph{
+    margin-bottom:35px;
+}
+.section--regions .regions{
+    padding:35px 0 0;
+    border-top:2px solid #e5e5e5;
+}
+.section--regions .regions a{
+    width:100%;
+    display:flex;
+    font-weight:600;
+    padding:8px 10px;
+    border-radius:5px;
+    background:#fff;
+    text-decoration:none;
+    color:#009acd;
+    transition:.3s ease-out;
+    margin-bottom:15px;
+    text-transform:uppercase;
+}
+.section--regions .regions a .number{
+    margin-left:auto;
+    color:#ff3066;
+    transition:.3s ease-out;
+}
+.section--regions .regions a:hover{
+    background:#ff3066;
+    color:#fff;
+}
+.section--regions .regions a:hover .number{
+    color:#fff;
+}
+.section--cities{
+    padding:50px 0;
+    position:relative;
+    background:#fff;
+}
+.section--cities .title--section i{
+    color:#ff3066;
+}
+.section--cities .grid .grid-item{
+    padding:5px;
+    width:16.6666666667%;
+}
+@media(max-width: 991px){
+    .section--cities .grid .grid-item{
+        width:33.3333333333%;
+    }
+}
+@media(max-width: 575px){
+    .section--cities .grid .grid-item{
+        width:50%;
+    }
+}
+.section--cities .city{
+    padding-bottom:25px;
+}
+.section--cities .city+.city{
+    padding-top:25px;
+    border-top:2px solid #e5e5e5;
+}
+.section--cities .city .block{
+    background:#fff;
+    position:relative;
+    border-radius:8px;
+    margin-bottom:35px;
+    border:1px solid #ccc;
+    transition:.3s ease-out;
+}
+.section--cities .city .block:hover{
+    box-shadow:0px 0px 25px 0px rgba(0,0,0,.25);
+    -moz-box-shadow:0px 0px 25px 0px rgba(0,0,0,.25);
+    -webkit-box-shadow:0px 0px 25px 0px rgba(0,0,0,.25);
+}
+.section--cities .city .block:hover img{
+    transform:scale(1.1);
+}
+.section--cities .city .block figure{
+    height:150px;
+    overflow:hidden;
+    margin-bottom:0;
+    border-top-left-radius:8px;
+    border-top-right-radius:8px;
+}
+@media(max-width: 575px){
+    .section--cities .city .block figure{
+        height:250px;
+    }
+}
+.section--cities .city .block figure img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    transition:.3s ease-out;
+}
+.section--cities .city .block .content{
+    padding:15px 10px;
+}
+.section--cities .city .block .content .title{
+    margin-bottom:10px;
+}
+.section--cities .city .block .content .paragraph{
+    margin-bottom:0;
+}
+
+.grid .grid-item .block .title--block{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.grid .grid-item .block .paragraph{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

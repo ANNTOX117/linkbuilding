@@ -1,0 +1,1 @@
+<h3 class="title__section"><?php echo __('Ultricies quam felis nec donec');?></h3>

@@ -1,0 +1,1 @@
+<h3 class="title__section text-center" data-aos="fade-up"><?php echo __('Felis quam ultricies nec donec');?></h3>

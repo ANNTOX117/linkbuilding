@@ -1,0 +1,304 @@
+@import 'modules/helpers.sass'
+@import 'modules/header.sass'
+@import 'modules/footer.sass'
+
+.section
+  &--hero
+    position: relative
+    padding: 210px 0 75px
+    @media(max-width:1399px)
+      padding: 165px 0 60px
+    @media(max-width:767px)
+      padding: 150px 0 25px
+    .figure
+      position: absolute
+      right: 0
+      top: 0
+      z-index: 1
+      max-width: 50%
+      @media(max-width:1499px)
+        max-width: 48%
+      @media(max-width:991px)
+        max-width: 70%
+    .content
+      z-index: 9
+      position: relative
+      @media(max-width:991px)
+        padding: 30px 10px
+        border-radius: 8px
+        background: rgba(#fff, .9)
+      .paragraph
+        margin-bottom: 50px
+        @media(max-width:1399px)
+          margin-bottom: 35px
+        @media(max-width:1199px)
+          margin-bottom: 25px
+      .buttons
+        .btn
+          width: calc(50% - 24px)
+          &.btn-primary
+            margin-right: 12px
+          &.btn-secondary
+            margin-left: 12px
+    .decoration
+      position: absolute
+      left: 0
+      top: 0
+      @media(max-width:767px)
+        max-width: 15%
+  &--blocks
+    padding: 75px 0 60px
+    @media(max-width:1399px)
+      padding: 60px 0 50px
+    @media(max-width:991px)
+      padding: 60px 0 35px
+    @media(max-width:767px)
+      padding: 25px 0 35px
+    .title__section
+      margin-bottom: 80px
+      @media(max-width:1399px)
+        margin-bottom: 50px
+      @media(max-width:1199px)
+        margin-bottom: 40px
+    .dec
+      position: relative
+      .decoration
+        position: absolute
+        left: -120px
+        bottom: -120px
+        z-index: -1
+    .block
+      background: #fff
+      padding: 50px 20px
+      border-radius: 8px
+      transition: .3s ease-out
+      border: 1px solid #dddddd
+      @media(max-width:1199px)
+        padding: 30px 15px
+      @media(max-width:991px)
+        margin-bottom: 25px
+      &:hover
+        background: $purple
+        border-color: $purple
+        .title__block
+          color: #fff
+        .block__figure
+          &::before
+            background: #fff
+          .block__figure__image
+            filter: invert(100%) sepia(0%) saturate(7481%) hue-rotate(263deg) brightness(5000%) contrast(102%)
+        .paragraph
+          color: #fff
+      .title__block
+        margin-bottom: 20px
+      &__figure
+        margin-bottom: 80px
+        position: relative
+        &::before
+          content: ""
+          position: absolute
+          left: 0
+          bottom: -40px
+          width: 40px
+          height: 2px
+          background: $blue
+          transition: .3s ease-out
+  &--content
+    padding: 60px 0
+    position: relative
+    @media(max-width:1399px)
+      padding: 50px 0
+    @media(max-width:991px)
+      padding: 25px 0
+    .title__section
+      margin-bottom: 50px
+      @media(max-width:1399px)
+        margin-bottom: 45px
+      @media(max-width:1199px)
+        margin-bottom: 35px
+    .decoration
+      position: absolute
+      right: 0
+      bottom: -100px
+      z-index: -1
+    table
+      h4
+        color: #a958e2
+        font-weight: 600
+        span
+          color: $blue
+          display: block
+          font-size: 18px
+      p
+        color: $blue
+        margin-left: 20px
+        padding-left: 20px
+        border-left: 1px solid #e7e7e7
+  &--content-blocks
+    padding: 50px
+    @media(max-width:1399px)
+      padding: 50px 0 25px
+    @media(max-width:991px)
+      padding: 25px 0
+    .content-block
+      position: relative
+      margin-bottom: 50px
+      @media(max-width:991px)
+        margin-bottom: 25px
+      &+.content-block
+        padding-top: 50px
+        @media(max-width:991px)
+          padding-top: 25px
+      figure:not(.decoration)
+        @media(max-width:991px)
+          display: none
+      .decoration
+        position: absolute
+        left: -80px
+        bottom: -40px
+        z-index: -1
+      .decoration-two
+        position: absolute
+        bottom: -40px
+        right: -80px
+        z-index: -1
+      .paragraph
+        margin-bottom: 35px
+        @media(max-width:1199px)
+          margin-bottom: 25px
+      ul
+        list-style: none
+        padding: 0
+        margin: 0
+        li
+          color: $blue
+          font-size: 18px
+          font-weight: 600
+          margin-bottom: 25px
+          @media(max-width:1199px)
+            margin-bottom: 15px
+          i
+            color: $purple
+      .btn
+        padding: 15px 85px
+  &--logging-register
+    width: 100vw
+    height: 100vh
+    position: relative
+    background: #ead4ff
+    &::before
+      content: ""
+      position: absolute
+      top: 0
+      right: 0
+      width: 45%
+      height: 100%
+      background: #fff
+      z-index: 0
+      z-index: 9
+      @media(max-width:991px)
+        width: 55%
+      @media(max-width:767px)
+        display: none
+    .form
+      z-index: 99
+      height: 100vh
+      display: flex
+      padding: 50px 0
+      position: relative
+      flex-direction: column
+      @media(max-width:767px)
+        background: #fff
+        padding: 50px 35px
+        height: fit-content
+        position: absolute
+        top: 0
+        bottom: 0
+        left: 0
+        right: 0
+        margin: auto
+        border-radius: 12px
+        width: 90%
+        max-width: 450px
+      .logo
+        text-align: right
+        @media(max-width:767px)
+          text-align: center
+      .title
+        &__section
+          margin-top: auto
+          margin-bottom: 75px
+          @media(max-width:991px)
+            margin-bottom: 25px
+        &__block
+          margin-bottom: 30px
+      label
+        color: #0009
+        font-size: 18px
+        font-weight: 600
+      input
+        outline: none
+        box-shadow: none
+        background: transparent
+        margin-bottom: 15px
+        border-radius: 0
+        border-top: 0
+        border-left: 0
+        border-right: 0
+        transition: .3s ease-out
+        border-bottom: 2px solid #ccc
+        &:hover, &:focus
+          border-color: $purple
+      .recover-password
+        text-align: right
+        color: $purple
+        text-decoration: none
+        font-weight: 600
+        font-size: 18px
+        transition: .3s ease-out
+        margin-bottom: 30px
+      .btn
+        width: 250px
+        display: block
+        margin-left: auto
+        margin-right: auto
+        margin-bottom: 25px
+      .create-accout
+        text-align: center
+        color: $purple
+        text-decoration: none
+        font-weight: 600
+        font-size: 18px
+        transition: .3s ease-out
+        margin-bottom: auto
+    .figure
+      position: absolute
+      left: 0
+      top: 0
+      z-index: 1
+      max-width: 50%
+      transform: scaleX(-1)
+      @media(max-width:1499px)
+        max-width: 48%
+      @media(max-width:991px)
+        max-width: 70%
+    .decoration
+      position: absolute
+      right: 0
+      top: 0
+      z-index: 99
+      transform: scaleX(-1)
+      @media(max-width:767px)
+        max-width: 15%
+        top: -50px
+    .decoration-two
+      position: absolute
+      right: 45%
+      bottom: 15px
+      height: fit-content
+      @media(max-width:767px)
+        right: auto
+        left: 0
+        bottom: 0
+        transform: scaleX(-1)
+        max-width: 10%

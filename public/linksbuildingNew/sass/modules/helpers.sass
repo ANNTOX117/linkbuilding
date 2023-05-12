@@ -1,0 +1,112 @@
+$blue: #233e67
+$purple: #aa59e3
+@font-face
+  font-family: 'Figtree', sans-serif
+  src: "../webfonts/Figtree-Regular.ttf"
+  font-weight: 300
+@font-face
+  font-family: 'Figtree', sans-serif
+  src: "../webfonts/Figtree-Regular.ttf"
+  font-weight: 400
+@font-face
+  font-family: 'Figtree', sans-serif
+  src: "../webfonts/Figtree-Medium.ttf"
+  font-weight: 500
+@font-face
+  font-family: 'Figtree', sans-serif
+  src: "../webfonts/Figtree-SemiBold.ttf"
+  font-weight: 600
+@font-face
+  font-family: 'Figtree', sans-serif
+  src: "../webfonts/Figtree-Bold.ttf"
+  font-weight: 700
+@font-face
+  font-family: 'Figtree', sans-serif
+  src: "../webfonts/Figtree-ExtraBold.ttf"
+  font-weight: 900
+
+body
+  font-family: 'Figtree', sans-serif
+  img
+    max-width: 100%
+
+.title
+  &__main
+    color: $blue
+    font-size: 50px
+    font-weight: 900
+    margin-bottom: 30px
+    @media(max-width:1199px)
+      font-size: 42px
+      margin-bottom: 20px
+    @media(max-width:991px)
+      font-size: 36px
+    @media(max-width:767px)
+      font-size: 32px
+    @media(max-width:575px)
+      font-size: 26px
+  &__section
+    color: $blue
+    font-size: 40px
+    font-weight: 900
+    @media(max-width:1199px)
+      font-size: 36px
+    @media(max-width:991px)
+      font-size: 32px
+    @media(max-width:767px)
+      font-size: 26px
+    @media(max-width:575px)
+      font-size: 22px
+    span
+      font-weight: 700
+  &__block
+    color: $blue
+    font-size: 24px
+    font-weight: 900
+    @media(max-width:1199px)
+      font-size: 20px
+    @media(max-width:767px)
+      font-size: 18px
+    span
+      font-weight: 700
+.paragraph
+  color: #636363
+  font-size: 18px
+  @media(max-width:575px)
+    font-size: 16px
+
+.btn
+  outline: none
+  line-height: 1
+  box-shadow: none
+  font-size: 18px
+  font-weight: 600
+  padding: 15px 30px
+  border-radius: 5px
+  text-transform: uppercase
+  transition: .3s ease-out
+  @media(max-width:575px)
+    font-size: 16px
+  &.btn-primary
+    color: #fff
+    background: $purple
+    border: 2px solid $purple
+    transition: .3s ease-out
+    &:hover
+      color: $purple
+      background: #fff
+      border-color: $purple
+  &.btn-secondary
+    color: $purple
+    background: #fff
+    border: 2px solid $purple
+    &:hover
+      color: #fff
+      background: $purple
+      border-color: $purple
+
+div[data-aos=fade-left],[data-aos=fade-right],[data-aos=fade-up],table[data-aos=fade-left],[data-aos=fade-right],[data-aos=fade-up]
+  @media(max-width:991px)
+    pointer-events: auto !important
+    opacity: 1 !important
+    transform: none !important

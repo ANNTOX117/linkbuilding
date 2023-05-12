@@ -1,0 +1,1 @@
+<h1 class="title__main"><?php echo __('Nulla consequat massa quis enim') ?></h1>

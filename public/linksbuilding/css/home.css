@@ -1,0 +1,154 @@
+#navbarCollapse .nav-item .nav-link{
+	color: white;
+}
+#navbarCollapse .nav-item .nav-link:hover, #navbarCollapse .nav-item.active .nav-link{
+	background-color: #18bc9c;
+}
+.p-first{
+	padding-top: 150px !important;
+}
+
+.section{
+	padding: 150px 0;
+}
+
+.section.p-100{
+	padding: 100px 0;
+}
+
+.section.p-50{
+	padding: 50px 0;
+}
+
+.bg-blue{
+	background-color:#2c3e50;
+}
+.bg-gray{
+	background-color: #f3f3f3;
+}
+.bg-aqua{
+	background-color: #18bc9c;
+}
+
+.text-aqua{
+	color: #18bc9c;
+}
+
+h1{
+	font-size: 50px;
+}
+h2{
+	font-size: 34px;
+}
+h3{
+	font-size: 28px;
+}
+h5{
+	font-size: 24px;
+}
+h6{
+	font-size: 22px;
+}
+p{
+	font-size: 18px;
+}
+
+.btn-aqua{
+	background-color: transparent;
+	color: #18bc9c;
+	border-color: #18bc9c;
+	padding: 10px 40px;
+	font-size: 22px;
+	width: 180px;
+}
+
+.btn-aqua:hover{
+	background-color: #18bc9c;
+	color: white;
+}
+
+.btn-white{
+	background-color: white;
+	color: #18bc9c;
+	padding: 10px 40px;
+	font-size: 22px;
+}
+.btn-white:hover{
+	background-color: white;
+	color: #18bc9c;
+}
+
+#mac{
+	margin-bottom: -5%;
+}
+
+.bg-services{
+	background-color: transparent;
+	padding: 50px 20px;
+}
+
+.bg-services h5{
+	color: #2c3e50;
+}
+
+.bg-services p{
+	color: #7d7d7d;
+}
+
+.bg-services img{
+	filter: invert(82%) sepia(60%) saturate(500%) hue-rotate(170deg) brightness(50%) contrast(87%);
+}
+
+.bg-services:hover{
+	background-color:#2c3e50;
+}
+
+.bg-services:hover img{
+	filter: invert(58%) sepia(83%) saturate(436%) hue-rotate(118deg) brightness(89%) contrast(87%);
+}
+
+.bg-services:hover h5{
+	color: #18bc9c;
+}
+
+.bg-services:hover p{
+	color: white;
+}
+
+.ul-list{
+	columns: 2;
+	text-align: justify;
+	padding: 40px 20px;
+}
+
+.ul-list li {
+	padding: 10px;
+	font-size: 18px;
+}
+
+
+
+ul.p-10 li{
+	padding: 5px 0;
+}
+
+.footer-botton{
+	border-top: 1px solid #546271;
+	color: white;
+	padding: 5px 0;
+}
+
+
+@media (max-width: 991px) {
+	.section, .section.p-100{
+		padding: 80px 0;
+	}
+
+	h1{
+		font-size: 40px;
+	}
+
+	.ul-list{
+		columns: 1;
+	}
+}

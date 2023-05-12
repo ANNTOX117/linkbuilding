@@ -1,0 +1,96 @@
+$primary_color: #1E72FB
+#app
+  .fakeMasonry-loader
+    margin: 0 0 40px
+    .loader
+      animation: rotate 2s linear infinite
+      font-size: 50px
+      color: $primary_color
+      line-height: 1
+      width: 50px
+      height: 50px
+      display: flex
+      align-items: center
+      justify-content: center
+      margin: 0 auto
+  .top-bar
+    .navbar
+      padding: 10px 0
+    .container-fluid
+      @media(min-width: 768px)
+        max-width: 83.33333%
+  .section--title
+    font-size: 38px
+    font-weight: 700
+    margin: 0 0 30px
+  .carousel
+    .carousel-item
+      background: url(../img/slid-bg.jpeg)
+      background-size: cover
+      background-position: center center
+      &.active
+        .carousel-item__inner
+          h3, p, .btn
+            transform: none
+            opacity: 1
+      &__inner
+        padding: 120px 0
+        background: rgba(#000, .4)
+        color: #FFFFFF
+        h3
+          color: #FFFFFF
+          font-weight: 700
+          font-size: 34px
+          line-height: 40px
+          opacity: 0
+          transform: translateY(20px)
+          transition: .3s ease-out
+          transition-delay: 0
+        p
+          color: #FFFFFF
+          font-size: 20px
+          opacity: 0
+          transform: translateY(20px)
+          transition: .3s ease-out
+          transition-delay: .3s
+        .btn
+          padding: 8px 30px
+          font-weight: 700
+          font-size: 18px
+          margin-top: 20px
+          opacity: 0
+          transform: translateY(20px)
+          transition: .3s ease-out
+          transition-delay: .6s
+    .carousel-control-prev,
+    .carousel-control-next
+      background: #FFFFFF
+      border-radius: 0
+      background: $primary_color
+      color: #FFFFFF
+      opacity: .8
+      transition: .3s ease-out
+      &:hover
+        opacity: 1
+  .welcome-message
+    padding: 50px 0 0
+    p
+      font-size: 18px
+.grid-card
+  .color-box
+    border-top-left-radius: 5px
+    border-top-right-radius: 5px
+    font-weight: 700
+  .border
+    border-bottom-left-radius: 5px
+    border-bottom-right-radius: 5px
+    padding: 0 10px 20px
+    ul
+      li
+        &:last-child
+          border-bottom: 0 !important
+@keyframes rotate
+  0%
+    transform: rotate(0)
+  100%
+    transform: rotate(360deg)

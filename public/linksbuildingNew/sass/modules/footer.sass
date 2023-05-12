@@ -1,0 +1,78 @@
+footer
+  padding-top: 70px
+  border-top: 1px solid #dfdfdf
+  .widgets
+    .widget
+      margin-bottom: 40px
+      @media(max-width:991px)
+        margin-bottom: 25px
+      figure
+        margin-bottom: 30px
+        @media(max-width:991px)
+          margin-bottom: 15px
+      ul
+        @media(max-width:991px)
+          padding-left: 18px
+        li
+          font-size: 18px
+          font-weight: 500
+          margin-bottom: 15px
+          position: relative
+          width: fit-content
+          &::before
+            content: ""
+            position: absolute
+            left: 0
+            bottom: -8px
+            width: 0
+            height: 3px
+            background: transparent
+            transition: .3s ease-out
+          &:hover
+            &::before
+              width: 50px
+              background: $purple
+          a
+            color: #1f1f1f
+            text-decoration: none
+            transition: .3s ease-out
+            &:hover
+              color: $purple
+  .bottom
+    padding: 12px 0
+    border-top: 1px solid #dfdfdf
+    span
+      color: #282828
+      font-size: 16px
+  #arrow
+    position: fixed
+    bottom: 30px
+    right: 50px
+    width: 65px
+    height: 65px
+    border-radius: 50%
+    background: $purple
+    display: flex
+    justify-content: center
+    align-items: center
+    border: none
+    color: #fff
+    font-size: 18px
+    transition: .3s ease-out
+    transform: translateX(150px)
+    &:hover
+      transform: scale(1.1)
+    @media(max-width:1399px)
+      width: 50px
+      height: 50px
+      right: 35px
+    @media(max-width:575px)
+      bottom: 15px
+      right: 15px
+
+body.fixed-bar
+  footer
+    #arrow
+      transform: translateX(0)
+      &:hover
+        transform: scale(1.1)
